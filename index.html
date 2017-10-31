@@ -1,32 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>test</title>
+<link href="main.css" rel="stylesheet">
+	<title>Лаба 1</title>
 </head>
-<body>
-<h1 id="test">test</h1>
-<ul>
-	<li>gavno 
+<body class="back">
+<h1 id="test">Вводить цифры больше 0 и меньше 1.000.000</h1>
+<ul >
+	<li>ввод
 	<input type="text" id="bleat"> 
 	<script>
   	var input = document.getElementById('bleat')//.body.children[1].children[0].children[0];
   	//var output = document.body.ul.li.children[1];
-  	var xhr = new XMLHttpRequest();
+  	/*var xhr = new XMLHttpRequest();
 	xhr.open('GET', 'number.json', false);
 	xhr.send();
 	if (xhr.status != 200) {
 	alert( xhr.status + ': ' + xhr.statusText ); 
 	} else {
 	var data = JSON.parse(xhr.responseText); // responseText -- текст ответа.
-	}
-	/*var data = {
+	}*/
+	var data = {
 	"number":[0,1,2,3,4,5,6,7,8,9],
 	"length":[1,2,3,4],
 	"name_n":["zero","one","two","three","four","five","six","seven","eight","nine"],
 	"name_n2":["ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eightteen","nineteen"],
 	"name_l":["name_n","ten","hundred","thousand"],
 	"name_l2":["undefeined","ten","twenty","thirty","forty","fifty","sixty","seventy","eighty","ninety"]
-}*/
+}
 
 	//document.getElementById('test').innerHTML =JSON.stringify(xhr.response);
   	input.oninput = function() {
@@ -36,6 +37,8 @@
     	if (parseInt(input.value)){
     		outp(parseInt(input.value),data,output)
     		    	}
+    	else
+    		output.innerHTML="noup"
     	
   	};
   	function outp(input,data,output){
@@ -44,7 +47,7 @@
   			var nextt=1;
     		for (buf_input=input;nextt!=0 ;buf_input=nextt,next=-2 ) {
     			nextt=0;
-    			console.log(next);
+    			
     			if (buf_input>=1000&&buf_input<1000000){
     				if(Math.floor(buf_input/1000)!=0){
     					nextt=Math.floor(buf_input/1000);
@@ -62,17 +65,21 @@
     			}
     			if ( buf_input >=100 && buf_input<1000){
     				
-    				
+    				if (next==-2){
+    					buf_o+=data.name_n[Math.floor(buf_input/100)]+" "
+    					buf_o+=data.name_l[2]+" ";
+    				}
+    				else{
     				output.innerHTML+=data.name_n[Math.floor(buf_input/100)]+" ";
-    				output.innerHTML+=data.name_l[2]+" ";
+    				output.innerHTML+=data.name_l[2]+" ";}
     				buf_input=buf_input%100;
     				
     		}
     			if (buf_input >=20 && buf_input<100){
     				if (next==-2){
-    					console.log("buf +");
+    					
     					buf_o+=data.name_l2[Math.floor(buf_input/10)];
-    				console.log("buf "+buf_o);
+    				
     				}
     				else
     				output.innerHTML+=data.name_l2[Math.floor(buf_input/10)];
@@ -124,11 +131,11 @@
     			
     			
     	}
-    	console.log("buf "+buf_o);
+    	
     	output.innerHTML=buf_o+output.innerHTML;
     }
 	</script></li>
-	<li>mocha
+	<li>результат:
 	<span id="result"></span></li>
 </ul>
       
