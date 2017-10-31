@@ -74,12 +74,12 @@
     					buf_o+=data.name_l2[Math.floor(buf_input/10)];
     				console.log("buf "+buf_o);
     				}
-    				else
+    				else{
     				output.innerHTML+=data.name_l2[Math.floor(buf_input/10)];
     				buf_input=buf_input%10;
     				if (buf_input!=0)
     					output.innerHTML+="-";
-    				
+    				}
     			}
     			if (buf_input >=10 && buf_input<20){
     				if (next==-2)
