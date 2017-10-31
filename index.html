@@ -19,12 +19,111 @@
 	} else {
 	var data = JSON.parse(xhr.responseText); // responseText -- текст ответа.
 	}
+	/*var data = {
+	"number":[0,1,2,3,4,5,6,7,8,9],
+	"length":[1,2,3,4],
+	"name_n":["zero","one","two","three","four","five","six","seven","eight","nine"],
+	"name_n2":["ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eightteen","nineteen"],
+	"name_l":["name_n","ten","hundred","thousand"],
+	"name_l2":["undefeined","ten","twenty","thirty","forty","fifty","sixty","seventy","eighty","ninety"]
+}*/
+
 	//document.getElementById('test').innerHTML =JSON.stringify(xhr.response);
-  	input.oninput = function(data) {
+  	input.oninput = function() {
     	var output=document.getElementById('result');
-    	if (input.value >=0 && input.value<10)
-    		output.innerHTML+=data.name_n[input.value]
+    	output.innerHTML="";
+    	var length=input.value.length;
+    	if (parseInt(input.value)){
+    		outp(parseInt(input.value),data,output)
+    		    	}
+    	
   	};
+  	function outp(input,data,output){
+  			next=-1;
+  			var buf_o="";
+  			var nextt=1;
+    		for (buf_input=input;nextt!=0 ;buf_input=nextt,next=-2 ) {
+    			nextt=0;
+    			console.log(next);
+    			if (buf_input>=1000&&buf_input<1000000){
+    				if(Math.floor(buf_input/1000)!=0){
+    					nextt=Math.floor(buf_input/1000);
+    					next=1;
+    				}
+
+    				if (next==-2)
+    					buf_o+=data.name_l[3]+" ";
+    				else
+    				output.innerHTML+=data.name_l[3]+" ";
+    				buf_input=buf_input%1000;
+    				
+
+    				
+    			}
+    			if ( buf_input >=100 && buf_input<1000){
+    				
+    				
+    				output.innerHTML+=data.name_n[Math.floor(buf_input/100)]+" ";
+    				output.innerHTML+=data.name_l[2]+" ";
+    				buf_input=buf_input%100;
+    				
+    		}
+    			if (buf_input >=20 && buf_input<100){
+    				if (next==-2){
+    					console.log("buf +");
+    					buf_o+=data.name_l2[Math.floor(buf_input/10)];
+    				console.log("buf "+buf_o);
+    				}
+    				else
+    				output.innerHTML+=data.name_l2[Math.floor(buf_input/10)];
+    				buf_input=buf_input%10;
+    				if (buf_input!=0)
+    					output.innerHTML+="-";
+    				
+    			}
+    			if (buf_input >=10 && buf_input<20){
+    				if (next==-2)
+    					buf_o+=data.name_n2[buf_input%10]+" ";
+    				else 
+    				output.innerHTML+=data.name_n2[buf_input%10]+" ";
+    				if (next!=-1&&next!=-2)
+    					continue;
+    				else
+    					break;
+    			}
+    			if (buf_input >0 && buf_input<10&&length!=1){
+    				if (next==-2)
+    					buf_o+=data.name_n[buf_input]+" ";
+    				else 
+    				output.innerHTML+=data.name_n[buf_input]+" ";
+    				if (next!=-1&&next!=-2)
+    					continue;
+    				else
+    					break;
+    			}
+    			if (buf_input ==0&&length!=1){
+    				
+    				if (next!=-1&&next!=-2)
+    					continue;
+    				else
+    					break;
+    			}
+    			if (buf_input >=0 && buf_input<10&&length==1){
+    				if (next==-2)
+    					buf_o+=data.name_n[buf_input]+" ";
+    				else 
+    				output.innerHTML+=data.name_n[buf_input]+" ";
+    				if (next!=-1&&next!=-2)
+    					continue;
+    				else
+    					break;
+    			}
+    			
+    			
+    	}
+    	console.log("buf "+buf_o);
+    	output.innerHTML=buf_o+output.innerHTML;
+    }
 	</script></li>
 	<li>mocha
 	<span id="result"></span></li>
