@@ -19,12 +19,11 @@
 	} else {
 	var data = JSON.parse(xhr.responseText); // responseText -- текст ответа.
 	}
-	alert(data)
 	//document.getElementById('test').innerHTML =JSON.stringify(xhr.response);
-  	input.oninput = function() {
+  	input.oninput = function(data) {
     	var output=document.getElementById('result');
-    	if (input.value == 1)
-    		output.innerHTML+='one'
+    	if (input.value >=0 && input.value<10)
+    		output.innerHTML+=data.name_n[input.value]
   	};
 	</script></li>
 	<li>mocha
