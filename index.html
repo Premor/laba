@@ -4,6 +4,32 @@
 	<title>test</title>
 </head>
 <body>
-<h1>test</h1>>
+<h1 id="test">test</h1>
+<ul>
+	<li>gavno 
+	<input type="text" id="bleat"> 
+	<script>
+  	var input = document.getElementById('bleat')//.body.children[1].children[0].children[0];
+  	//var output = document.body.ul.li.children[1];
+  	var xhr = new XMLHttpRequest();
+	xhr.open('GET', 'number.json', false);
+	xhr.send();
+	if (xhr.status != 200) {
+	alert( xhr.status + ': ' + xhr.statusText ); 
+	} else {
+	var data = JSON.parse(xhr.responseText); // responseText -- текст ответа.
+	}
+	alert(data)
+	//document.getElementById('test').innerHTML =JSON.stringify(xhr.response);
+  	input.oninput = function() {
+    	var output=document.getElementById('result');
+    	if (input.value == 1)
+    		output.innerHTML+='one'
+  	};
+	</script></li>
+	<li>mocha
+	<span id="result"></span></li>
+</ul>
+      
 </body>
-</html>>
+</html>
